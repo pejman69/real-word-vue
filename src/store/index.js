@@ -1,33 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import * as user from "@/store/modules/user.js";
+import * as event from "@/store/modules/event.js";
+import * as notification from "@/store/modules/notification.js";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    user: {
-      id: 'abc789', name: 'pejman mowloudi'
-    },
-    categories: [
-      'sustain',
-      'pejman',
-      'peshawa',
-      'food',
-      'communtiy'
-    ],
-    events: [
-      { id: 1, title: '...', organizer: true },
-      { id: 2, title: '...', organizer: false },
-      { id: 3, title: '...', organizer: true },
-      { id: 4, title: '...', organizer: false }
-    ]
+  modules: {
+    user,
+    event,
+    notification
   },
-  mutations: {},
-  actions: {},
-  modules: {},
-  getters: {
-    getEventById: state => id => {
-      return state.events.find(event => event.id === id )
-    }
+  state: {
+    categories: ["sustain", "pejman", "peshawa", "food", "communtiy"]
   }
-})
+});

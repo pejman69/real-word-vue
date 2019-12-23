@@ -3,26 +3,27 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import upperFirst from "lodash/upperFirst";
+import camelCase from "lodash/camelCase";
+import "nprogress/nprogress.css";
 
 const requireComponent = require.context(
-  './components', // Directory to search
+  "./components", // Directory to search
   false, // Search subdirectories?
   /Base[A-Z]\w+\.(vue|js)$/ // Filename regex
-)
+);
 
 // Requires each component found by require.context
 requireComponent.keys().forEach(fileName => {
-  const componentConfig = requireComponent(fileName)
+  const componentConfig = requireComponent(fileName);
 
   // Formats names from filenames
   const componentName = upperFirst(
-    camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, '$1'))
-  )
+    camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, "$1"))
+  );
 
-  Vue.component(componentName, componentConfig.default || componentConfig)
-})
+  Vue.component(componentName, componentConfig.default || componentConfig);
+});
 Vue.config.productionTip = false;
 
 new Vue({
